@@ -1,0 +1,48 @@
+variable "region" {
+  type    = "string"
+  default = "sfo2"
+}
+
+variable "droplet_size" {
+  type    = "string"
+  default = "512mb"
+}
+
+variable "droplet_name" {
+  type    = "string"
+  default = "roadwarrior"
+}
+
+variable "do_api_token" {
+  type    = "string"
+  default = "{{ do_api_token }}"
+}
+
+variable "ssh_fingerprint" {
+  type    = "string"
+  default = "{{ ssh_md5_fingerprint }}"
+}
+
+variable "ssh_private_key" {
+  type    = "string"
+  default = "{{ ssh_private_key }}"
+}
+
+variable "ssh_public_key" {
+    type    = "string"
+    default = "{{ ssh_public_key }}"
+}
+
+provider "digitalocean" {
+  token = "${var.do_api_token}"
+}
+
+module "digital_ocean" {
+  source           = "./digitalocean"
+  ssh_fingerprint  = "${var.ssh_fingerprint}"
+  ssh_private_key  = "${var.ssh_private_key}"
+  ssh_public_key   = "${var.ssh_public_key}"
+  region           = "${var.region}"
+  droplet_size     = "${var.droplet_size}"
+  droplet_name         = "${var.droplet_name}"
+}

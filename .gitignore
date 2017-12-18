@@ -1,0 +1,9 @@
+.idea/*
+.vscode/*
+ssh_keys/
+terraform/.terraform/
+terraform/main.tf
+terraform/plans/
+terraform/tasks.json
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
